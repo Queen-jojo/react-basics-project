@@ -2,7 +2,8 @@ import { useState } from "react";
 import { RecipeListPage } from "./pages/RecipeListPage";
 import { RecipePage } from "./pages/RecipePage";
 import { data } from "./utils/data";
-import { Box, Input } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
+import { SearchBar } from "./components/SearchBar";
 
 export const App = () => {
   const [recipes, setRecipes] = useState(data.hits.map((hit) => hit.recipe));
@@ -29,7 +30,7 @@ export const App = () => {
 
   return (
     <Box>
-      <Input placeholder="Search recipes" onChange={handleSearch} />
+      <SearchBar onSearch={handleSearch} />
       {selectedRecipe ? (
         <RecipePage
           recipe={selectedRecipe}

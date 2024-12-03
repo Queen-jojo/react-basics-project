@@ -6,6 +6,7 @@ import {
   Center,
   SimpleGrid,
   Card,
+  CardBody,
 } from "@chakra-ui/react";
 
 export const RecipePage = ({ recipe, onBack }) => {
@@ -69,16 +70,32 @@ export const RecipePage = ({ recipe, onBack }) => {
           Nutrients:
         </Text>
         <SimpleGrid columns={{ base: 1, sm: 2, md: 3 }}>
-          <Card>Energy: {recipe.calories} kcal</Card>
-          <Card>Protein: {recipe.totalNutrients.PROCNT.quantity ?? 0}g</Card>
-          <Card>Fat: {recipe.totalNutrients.FAT.quantity ?? 0}g</Card>
-          <Card>
-            Carbohydrates: {recipe.totalNutrients.CHOCDF.quantity ?? 0}g
+          <Card p={2} borderRadius="md">
+            <CardBody>Energy: {recipe.calories} kcal</CardBody>
           </Card>
-          <Card>
-            Cholesterol: {recipe.totalNutrients.CHOLE.quantity ?? 0}mg
+          <Card p={2} borderRadius="md">
+            <CardBody>
+              Protein: {recipe.totalNutrients.PROCNT.quantity ?? 0}g
+            </CardBody>
           </Card>
-          <Card>Sodium: {recipe.totalNutrients.NA.quantity ?? 0}mg</Card>
+          <Card p={2} borderRadius="md">
+            <CardBody>Fat: {recipe.totalNutrients.FAT.quantity ?? 0}g</CardBody>
+          </Card>
+          <Card p={2} borderRadius="md">
+            <CardBody>
+              Carbohydrates: {recipe.totalNutrients.CHOCDF.quantity ?? 0}g
+            </CardBody>
+          </Card>
+          <Card p={2} borderRadius="md">
+            <CardBody>
+              Cholesterol: {recipe.totalNutrients.CHOLE.quantity ?? 0}mg
+            </CardBody>
+          </Card>
+          <Card p={2} borderRadius="md">
+            <CardBody>
+              Sodium: {recipe.totalNutrients.NA.quantity ?? 0}mg
+            </CardBody>
+          </Card>
         </SimpleGrid>
       </Center>
     </Box>
