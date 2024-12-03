@@ -3,7 +3,7 @@ import { RecipeListPage } from "./pages/RecipeListPage";
 import { RecipePage } from "./pages/RecipePage";
 import { data } from "./utils/data";
 import { Box } from "@chakra-ui/react";
-import { SearchBar } from "./components/SearchBar";
+import { SearchBar } from "./component/SearchBar";
 
 export const App = () => {
   const [recipes, setRecipes] = useState(data.hits.map((hit) => hit.recipe));
