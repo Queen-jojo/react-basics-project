@@ -1,10 +1,23 @@
 import { Input } from "@chakra-ui/react";
+import { data } from "../utils/data";
 
-export const SearchBar = ({ onSearch }) => {
+export const SearchBar = ({ savedRecipes }) => {
   const handleSearch = (event) => {
-    console.log("event:", event);
-    const query = event.target.value;
-    onSearch(query);
+    const query = event.target.value.toLowerCase();
+    console.log("query:", query);
+
+    const filteredRecipes = data.hits.filter((recipe) => {
+      console.log("recipe:", recipe);
+      const recipeName = recipe.recipe.label.toLowerCase();
+      const healthLabels = recipe.recipe.healthLabels.map((label) =>
+        label.toLowerCase()
+      );
+      return (
+        recipeName.includes(query) ||
+        healthLabels.some((label) => label.includes(query))
+      );
+    });
+    savedRecipes(filteredRecipes);
   };
 
   return (
