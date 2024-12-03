@@ -2,10 +2,10 @@ import {
   Text,
   Box,
   Image,
-  List,
-  ListItem,
   Button,
   Center,
+  SimpleGrid,
+  Card,
 } from "@chakra-ui/react";
 
 export const RecipePage = ({ recipe, onBack }) => {
@@ -29,8 +29,11 @@ export const RecipePage = ({ recipe, onBack }) => {
   );
   return (
     <Box p={4}>
-      <Center gap={8} h="100vh" bgColor="blue.100">
-        <Text fontSize="x1" fontWeight="bold">
+      <Button mt={4} onClick={() => onBack()}>
+        Go back
+      </Button>
+      <Center bgColor="pink.100" h="100vh" flexDir="column" overflowY="auto">
+        <Text fontSize="2xl" fontWeight="bold" mb={6}>
           {recipe.label}
         </Text>
         <Image src={recipe.image} alt={recipe.label} borderRadius="md" mb={4} />
@@ -55,30 +58,28 @@ export const RecipePage = ({ recipe, onBack }) => {
         <Text fontSize="sm" fontWeight="bold">
           Ingredients:
         </Text>
-        <List>
+
+        <SimpleGrid columns={{ base: 1, sm: 2, md: 3 }}>
           {recipe.ingredients.map((ingredient, index) => (
-            <ListItem key={index}>{ingredient}</ListItem>
+            <Card key={index}>{ingredient.text}</Card>
           ))}
-        </List>
+        </SimpleGrid>
+
         <Text fontSize="sm" fontWeight="bold">
           Nutrients:
         </Text>
-        <List>
-          <ListItem>Energy: {recipe.calories} kcal</ListItem>
-          <ListItem>Fat: {recipe.totalNutrients.FAT.quantity ?? 0}g</ListItem>
-          <ListItem>
+        <SimpleGrid columns={{ base: 1, sm: 2, md: 3 }}>
+          <Card>Energy: {recipe.calories} kcal</Card>
+          <Card>Protein: {recipe.totalNutrients.PROCNT.quantity ?? 0}g</Card>
+          <Card>Fat: {recipe.totalNutrients.FAT.quantity ?? 0}g</Card>
+          <Card>
             Carbohydrates: {recipe.totalNutrients.CHOCDF.quantity ?? 0}g
-          </ListItem>
-          <ListItem>
+          </Card>
+          <Card>
             Cholesterol: {recipe.totalNutrients.CHOLE.quantity ?? 0}mg
-          </ListItem>
-          <ListItem>
-            Sodium: {recipe.totalNutrients.NA.quantity ?? 0}mg
-          </ListItem>
-        </List>
-        <Button mt={4} onClick={() => onBack()}>
-          Go back
-        </Button>
+          </Card>
+          <Card>Sodium: {recipe.totalNutrients.NA.quantity ?? 0}mg</Card>
+        </SimpleGrid>
       </Center>
     </Box>
   );
