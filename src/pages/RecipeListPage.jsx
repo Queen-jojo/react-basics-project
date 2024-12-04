@@ -1,5 +1,5 @@
 import {
-  Center,
+  Flex,
   Text,
   Box,
   Image,
@@ -9,12 +9,15 @@ import {
 } from "@chakra-ui/react";
 
 export const RecipeListPage = ({ recipes, onRecipeSelect }) => {
+  console.log("recipes:", recipes);
   return (
-    <Box p={4}>
-      <Center bgColor="pink.100" h="100vh" flexDir="column" overflowY="auto">
+    <Flex direction="column" bgColor="pink.100" minH="100vh" overflowY="auto">
+      <Box p={4} display="flex" alignItems="center" justifyContent="center">
         <Text fontSize="2xl" fontWeight="bold" mb={6}>
           The Best Recipe App
         </Text>
+      </Box>
+      <Box flex="1" p={4}>
         <SimpleGrid columns={{ base: 1, sm: 2, md: 3 }}>
           {recipes.map((recipe) => (
             <Card
@@ -64,7 +67,7 @@ export const RecipeListPage = ({ recipes, onRecipeSelect }) => {
             </Card>
           ))}
         </SimpleGrid>
-      </Center>
-    </Box>
+      </Box>
+    </Flex>
   );
 };
