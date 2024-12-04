@@ -1,7 +1,7 @@
 import { Input } from "@chakra-ui/react";
 import { data } from "../utils/data";
 
-export const SearchBar = ({ savedRecipes }) => {
+export const SearchBar = ({ selectedRecipe }) => {
   const handleSearch = (event) => {
     const query = event.target.value.toLowerCase();
     console.log("query:", query);
@@ -17,7 +17,7 @@ export const SearchBar = ({ savedRecipes }) => {
         healthLabels.some((label) => label.includes(query))
       );
     });
-    savedRecipes(filteredRecipes);
+    selectedRecipe(filteredRecipes);
   };
 
   return (
